@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/nav_account"
+        android:icon="@mipmap/ic_person_black_24dp"
+     android:title="Your account" />
+
+    <item android:id="@+id/nav_reset_password"
+        android:icon="@mipmap/ic_lock_open_black_24dp"
+        android:title="Reset Password" />
+
+    <item android:id="@+id/Logout"
+        android:icon="@mipmap/ic_exit_to_app_black_24dp"
+        android:title="Logout" />
+</menu>
