@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.booking.CardlistActivity;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.booking.ProfileActivity;
@@ -141,8 +142,8 @@ public class LoginFragment extends Fragment {
 
         mEtEmail.setText(null);
         mEtPassword.setText(null);
-
-        Intent intent = new Intent(getActivity(), ProfileActivity.class);
+        // Intent intent = new Intent(getActivity(), ProfileActivity.class);
+        Intent intent = new Intent(getActivity(), CardlistActivity.class);
         startActivity(intent);
 
     }

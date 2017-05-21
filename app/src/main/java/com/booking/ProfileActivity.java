@@ -29,6 +29,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
+
 public class ProfileActivity extends AppCompatActivity implements ChangePasswordDialog.Listener {
 
     public static final String TAG = ProfileActivity.class.getSimpleName();
@@ -45,10 +46,6 @@ public class ProfileActivity extends AppCompatActivity implements ChangePassword
     private String mToken;
     private String mEmail;
 
-    private DrawerLayout mDrawerLayout;
-    private ActionBarDrawerToggle mToggle;
-    private Toolbar mToolbar;
-
     private CompositeSubscription mSubscriptions;
 
     @Override
@@ -59,25 +56,6 @@ public class ProfileActivity extends AppCompatActivity implements ChangePassword
         initViews();
         initSharedPreferences();
         loadProfile();
-
-        mToolbar= (Toolbar) findViewById(R.id.nav_action);
-        setSupportActionBar(mToolbar);
-
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.activity_profile);
-        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout,R.string.open, R.string.close );
-
-        mDrawerLayout.addDrawerListener(mToggle);
-        mToggle.syncState();
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(mToggle.onOptionsItemSelected(item)){
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     private void initViews() {
@@ -93,14 +71,14 @@ public class ProfileActivity extends AppCompatActivity implements ChangePassword
         mBtLogout.setOnClickListener(view -> logout());
     }
 
-    private void initSharedPreferences() {
+    public void initSharedPreferences() {
 
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mToken = mSharedPreferences.getString(Constants.TOKEN,"");
         mEmail = mSharedPreferences.getString(Constants.EMAIL,"");
     }
 
-    private void logout() {
+    public void logout() {
 
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putString(Constants.EMAIL,"");
@@ -109,7 +87,7 @@ public class ProfileActivity extends AppCompatActivity implements ChangePassword
         finish();
     }
 
-    private void showDialog(){
+    public void showDialog(){
 
         ChangePasswordDialog fragment = new ChangePasswordDialog();
 
@@ -121,7 +99,7 @@ public class ProfileActivity extends AppCompatActivity implements ChangePassword
         fragment.show(getFragmentManager(), ChangePasswordDialog.TAG);
     }
 
-    private void loadProfile() {
+    public void loadProfile() {
 
         mSubscriptions.add(NetworkUtil.getRetrofit(mToken).getProfile(mEmail)
                 .observeOn(AndroidSchedulers.mainThread())
